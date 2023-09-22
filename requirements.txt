@@ -1,5 +1,5 @@
 numpy
-opencv
+opencv-python
 os
 streamlit
 matplotlib
