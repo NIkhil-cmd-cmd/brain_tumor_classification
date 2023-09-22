@@ -1,9 +1,6 @@
 numpy
 opencv-python
-os
-streamlit
 matplotlib
-sklearn
-PIL
+scikit-learn
+Pillow
 seaborn
-base64
