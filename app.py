@@ -133,9 +133,3 @@ plt.xlabel('Predicted')
 plt.ylabel('Actual')
 st.pyplot()
 
-# Classification Report
-st.subheader('Classification Report')
-classification_rep = classification_report(Y_test, sv.predict(pca_test), target_names=class_names.values())
-st.text(classification_rep)
-
-
