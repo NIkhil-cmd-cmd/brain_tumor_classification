@@ -29,8 +29,8 @@ set_bg_hack('magicpattern-mesh-gradient-1695322086991.png')
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
-training_path = 'data/Training'
-testing_path = 'data/Testing'
+training_path = '/data/Training'
+testing_path = '/data/Testing'
 
 classes = {'no_tumor': 0, 'pituitary_tumor': 1, 'meningioma_tumor': 2, 'glioma_tumor': 3}
 
