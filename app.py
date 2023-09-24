@@ -32,7 +32,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 training_path = 'data/Training/'
 testing_path = 'data/Testing/'
 
-classes = {'no_tumor': 0, 'pituitary_tumor': 1, 'meningioma_tumor': 2, 'glioma_tumor': 3}
+classes = {'notumor': 0, 'pituitary': 1, 'meningioma': 2, 'glioma': 3}
 
 X_train, Y_train, X_test, Y_test = [], [], [], []
 
