@@ -10,7 +10,6 @@ from PIL import Image
 import base64 
 from sklearn.metrics import confusion_matrix, classification_report
 import seaborn as sns
-
 def set_bg_hack(main_bg):
     main_bg_ext = "png"
     st.markdown(
@@ -24,7 +23,6 @@ def set_bg_hack(main_bg):
          """,
          unsafe_allow_html=True
      )
-
 set_bg_hack('magicpattern-mesh-gradient-1695322086991.png')
 
 streamlit_style = """
@@ -37,16 +35,11 @@ streamlit_style = """
 			</style>
 			"""
 st.markdown(streamlit_style, unsafe_allow_html=True)
-
 st.set_option('deprecation.showPyplotGlobalUse', False)
-
 training_path = 'data/Training/'
 testing_path = 'data/Testing/'
-
 classes = {'notumor': 0, 'pituitary': 1, 'meningioma': 2, 'glioma': 3}
-
 X_train, Y_train, X_test, Y_test = [], [], [], []
-
 # Load training data
 for cls in classes:
     pth = os.path.join(training_path, cls)
@@ -55,7 +48,6 @@ for cls in classes:
         img = cv2.resize(img, (200, 200))
         X_train.append(img)
         Y_train.append(classes[cls])
-
 # Load testing data
 for cls in classes:
     pth = os.path.join(testing_path, cls)
@@ -64,37 +56,29 @@ for cls in classes:
         img = cv2.resize(img, (200, 200))
         X_test.append(img)
         Y_test.append(classes[cls])
-
 X_train = np.array(X_train)
 Y_train = np.array(Y_train)
 X_test = np.array(X_test)
 Y_test = np.array(Y_test)
-
 X_train = X_train / 255
 X_test = X_test / 255
-
 X_train = X_train.reshape(len(X_train), -1)
 X_test = X_test.reshape(len(X_test), -1)
-
 # PCA
 n_components = 50
 pca = PCA(n_components=n_components)
 pca.fit(X_train)
 pca_train = pca.transform(X_train)
 pca_test = pca.transform(X_test)
-
 # Train classifier
 sv = SVC()
 sv.fit(pca_train, Y_train)
-
 # UI
 st.title('Brain Tumor Detection through MRI Imaging')
 st.sidebar.header('User Input')
 uploaded_image = st.sidebar.file_uploader("Upload an image for prediction", type=["jpg", "png"])
-
 if uploaded_image is not None:
     st.sidebar.image(uploaded_image, use_column_width=True, caption="Uploaded Image")
-
 # Predictions
 if st.sidebar.button("Predict"):
     if uploaded_image is not None:
@@ -104,13 +88,10 @@ if st.sidebar.button("Predict"):
         img = cv2.resize(img, (200, 200))
         img = img.reshape(1, -1) / 255
         img_pca = pca.transform(img)
-
         prediction = sv.predict(img_pca)
         class_names = {0: 'No Tumor', 1: 'Pituitary Tumor', 2: 'Meningioma Tumor', 3: 'Glioma Tumor'}
         result = class_names[prediction[0]]
-
         st.write(f"Prediction: {result}")
-
 st.header('Random Test Images')
 num_images_to_display = 9
 random_indices = np.random.randint(0, len(X_test), num_images_to_display)
@@ -129,12 +110,10 @@ for i, index in enumerate(random_indices):
     predicted_class = class_names[prediction[0]]
     color = ('green' if (prediction[0] == Y_test[index]) else 'red')
     plt.text(10, 180, f"Predicted: {predicted_class}", color=color, fontsize=6, bbox=dict(facecolor='white', alpha=0.8))
-    
 
 st.pyplot()
 st.header('Model Evaluation')
 st.write("Testing Score (Accuracy):", accuracy_score(Y_test, sv.predict(pca_test)))
-
 # Confusion Matrix
 st.subheader('Accuracy Matrix')
 conf_matrix = confusion_matrix(Y_test, sv.predict(pca_test))
@@ -152,7 +131,6 @@ st.markdown("""
     - Early detection and diagnosis are crucial for effective treatment and improved outcomes.
     - MRI imaging is a common method for diagnosing brain tumors, and machine learning models can assist in the detection process.
 """)
-
 # Add information and example images for each type of tumor
 st.header('Types of Brain Tumors')
 st.markdown("""
@@ -162,13 +140,11 @@ st.markdown("""
     - **Meningioma Tumor**: A tumor that arises from the membranes that cover the brain and spinal cord.
     - **Glioma Tumor**: A common type of brain tumor that originates in the glial cells.
 """)
-
 st.header('Data Orientations')
 st.markdown("""
     The brain tumor data used in this project was taken in three different orientations:
     - Sagittal: Side
     - Coronal: Front
     - Transverse: Top
-    
 """)
 
