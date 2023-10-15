@@ -27,6 +27,17 @@ def set_bg_hack(main_bg):
 
 set_bg_hack('magicpattern-mesh-gradient-1695322086991.png')
 
+streamlit_style = """
+			<style>
+			@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+			html, body, [class*="css"]  {
+			font-family: 'Publico', sans-serif;
+			}
+			</style>
+			"""
+st.markdown(streamlit_style, unsafe_allow_html=True)
+
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 training_path = 'data/Training/'
@@ -132,4 +143,32 @@ sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues', xticklabels=class_na
 plt.xlabel('Predicted')
 plt.ylabel('Actual')
 st.pyplot()
+
+st.header('About Brain Tumors')
+st.markdown("""
+    Brain tumors are abnormal growths of cells in the brain. They can be benign (non-cancerous) or malignant (cancerous), and they can vary in size and location.
+    Here are some key facts about brain tumors:
+    - Brain tumors can cause a wide range of symptoms, including headaches, seizures, and changes in behavior or cognition.
+    - Early detection and diagnosis are crucial for effective treatment and improved outcomes.
+    - MRI imaging is a common method for diagnosing brain tumors, and machine learning models can assist in the detection process.
+""")
+
+# Add information and example images for each type of tumor
+st.header('Types of Brain Tumors')
+st.markdown("""
+    There are several types of brain tumors, each with its own characteristics. Here are some examples of different brain tumor types:
+    - **No Tumor**: This is a normal MRI scan without any tumors.
+    - **Pituitary Tumor**: A tumor that develops in the pituitary gland, which can affect hormone regulation.
+    - **Meningioma Tumor**: A tumor that arises from the membranes that cover the brain and spinal cord.
+    - **Glioma Tumor**: A common type of brain tumor that originates in the glial cells.
+""")
+
+st.header('Data Orientations')
+st.markdown("""
+    The brain tumor data used in this project was taken in three different orientations:
+    - Sagittal: Side
+    - Coronal: Front
+    - Transverse: Top
+    
+""")
 
