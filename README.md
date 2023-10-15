@@ -19,8 +19,6 @@ Throughout this hackathon project, we learned about the importance of data, algo
 ## What's next for Brain Tumor Classification:
 In the future, we plan to refine our model further and make it accessible to healthcare providers worldwide. We aim to collaborate with medical professionals to ensure it meets their needs to explore the possibility of extending the model’s reach to detect more types of brain tumors. Ultimately, we hope to contribute to better healthcare through the power of AI.
 
-## Note
-Because of the large number of data files, we were only able to run it locally, please view the media to view how the project works.
-
-To-do:
-- finish readme (make better)
+## AWARDS:
+ImpactHacks: 3rd Place
+Hack4Earth: Honorable Mention
